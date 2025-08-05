@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
+            $table->integer('total');
+            $table->string('quantite');
+            $table->string('prix');
+            $table->string('image');
+            $table->string('statut');
+            $table->string('date');
             $table->timestamps();
         });
     }

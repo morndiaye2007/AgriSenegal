@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('rapports', function (Blueprint $table) {
             $table->id();
+            $table->string('type_rapport');
+            $table->id();
+
             $table->timestamps();
         });
     }

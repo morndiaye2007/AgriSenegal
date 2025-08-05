@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('commande_produit', function (Blueprint $table) {
             $table->id();
+            $table->string('quantite');
+
             $table->timestamps();
         });
     }
