@@ -20,8 +20,26 @@ class CommandeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = $request->validate([
+            'total' => 'required|string|max:255',
+            'quantite' => 'required|string|max:50',
+            'prix' => 'required|integer|min:1',
+            'statut' => 'nullable|string',
+            'date' => 'nullable|string',
+
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validation failed',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $commandes = Commande::create($request->all());
+        return response()->json($commandes, 201);
     }
+
 
     /**
      * Display the specified resource.
