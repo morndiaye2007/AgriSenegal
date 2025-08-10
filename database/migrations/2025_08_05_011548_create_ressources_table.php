@@ -17,8 +17,7 @@ return new class extends Migration
             $table->string('type');
             $table->string('contenu');
             $table->string('langue');
-            $table->id();
-            $table->id();
+
 
             $table->timestamps();
         });

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateCommandeRequest;
+use App\Models\Commande;
 use Illuminate\Http\Request;
 
 class CommandeController extends Controller
@@ -52,9 +54,11 @@ class CommandeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCommandeRequest $request, $id)
     {
-        //
+        $commandes = $this->commandeService->find($id);
+        $this->commandeService->update($commandes, $request->validated());
+        return response()->json($commandes);
     }
 
     /**
@@ -62,6 +66,8 @@ class CommandeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $commandes =$this->commandeService->find($id);
+        $commandes->commandeService->destroy($commandes);
+        return response()->json(null, 204);
     }
 }
