@@ -1,0 +1,66 @@
+<?php
+
+namespace App\Services;
+
+use App\Models\LigneCommande;
+
+class LigneCommandeService
+{
+    /**
+     * Récupère toutes les lignes de commande.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getAll()
+    {
+        return LigneCommande::all();
+    }
+
+    /**
+     * Crée une nouvelle ligne de commande.
+     *
+     * @param array $data
+     * @return LigneCommande
+     */
+    public function create(array $data): LigneCommande
+    {
+        return LigneCommande::create($data);
+    }
+
+    /**
+     * Trouve une ligne de commande par son ID.
+     *
+     * @param int $id
+     * @return LigneCommande
+     */
+    public function findById(int $id): LigneCommande
+    {
+        return LigneCommande::findOrFail($id);
+    }
+
+    /**
+     * Met à jour une ligne de commande.
+     *
+     * @param int $id
+     * @param array $data
+     * @return LigneCommande
+     */
+    public function update(int $id, array $data): LigneCommande
+    {
+        $ligneCommande = $this->findById($id);
+        $ligneCommande->update($data);
+        return $ligneCommande;
+    }
+
+    /**
+     * Supprime une ligne de commande.
+     *
+     * @param int $id
+     * @return void
+     */
+    public function delete(int $id): void
+    {
+        $ligneCommande = $this->findById($id);
+        $ligneCommande->delete();
+    }
+}

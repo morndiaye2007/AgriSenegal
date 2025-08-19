@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Services;
+
+use App\Models\Produit;
+
+class ProduitService
+{
+    public function getAll()
+    {
+        return Produit::with('agriculteur')->get();
+    }
+
+    public function findById($id)
+    {
+        return Produit::with('agriculteur')->findOrFail($id);
+    }
+
+    public function create(array $data): Produit
+    {
+        return Produit::create($data);
+    }
+
+    public function update($id, array $data): Produit
+    {
+        $produit = Produit::findOrFail($id);
+        $produit->update($data);
+        return $produit;
+    }
+
+    public function delete($id): void
+    {
+        $produit = Produit::findOrFail($id);
+        $produit->delete();
+    }
+}

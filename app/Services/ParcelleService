@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Services;
+
+use App\Models\Parcelle;
+
+class ParcelleService
+{
+    public function getAll()
+    {
+        return Parcelle::all();
+    }
+
+    public function create(array $data): Parcelle
+    {
+        return Parcelle::create($data);
+    }
+
+    public function findById(int $id): Parcelle
+    {
+        return Parcelle::findOrFail($id);
+    }
+
+    public function update(int $id, array $data): Parcelle
+    {
+        $parcelle = $this->findById($id);
+        $parcelle->update($data);
+        return $parcelle;
+    }
+
+    public function delete(int $id): void
+    {
+        $parcelle = $this->findById($id);
+        $parcelle->delete();
+    }
+}

@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Services;
+
+use App\Models\Commande;
+
+class CommandeService
+{
+    public function getAll()
+    {
+        return Commande::with(['acheteur', 'partenaireLivraison'])->get();
+    }
+
+    public function findById($id)
+    {
+        return Commande::with(['acheteur', 'partenaireLivraison'])->findOrFail($id);
+    }
+
+    public function create(array $data): Commande
+    {
+        return Commande::create($data);
+    }
+
+    public function update($id, array $data): Commande
+    {
+        $commande = Commande::findOrFail($id);
+        $commande->update($data);
+        return $commande;
+    }
+
+    public function delete($id): void
+    {
+        $commande = Commande::findOrFail($id);
+        $commande->delete();
+    }
+}

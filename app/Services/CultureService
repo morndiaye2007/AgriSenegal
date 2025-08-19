@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Services;
+
+use App\Models\Culture;
+
+class CultureService
+{
+    public function getAll()
+    {
+        return Culture::all();
+    }
+
+    public function create(array $data): Culture
+    {
+        return Culture::create($data);
+    }
+
+    public function findById(int $id): Culture
+    {
+        return Culture::findOrFail($id);
+    }
+
+    public function update(int $id, array $data): Culture
+    {
+        $culture = $this->findById($id);
+        $culture->update($data);
+        return $culture;
+    }
+
+    public function delete(int $id): void
+    {
+        $culture = $this->findById($id);
+        $culture->delete();
+    }
+}
